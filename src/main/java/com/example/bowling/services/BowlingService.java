@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.bowling;
+package com.example.bowling.services;
+
+import java.util.List;
 
 /**
  *
  * @author ramiro
  */
 public interface BowlingService {
-    public String doSomething();
+    public List<Integer> calculateScore(List<Integer> pinfalls);
 }
