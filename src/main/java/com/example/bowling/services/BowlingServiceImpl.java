@@ -23,7 +23,12 @@ public class BowlingServiceImpl implements BowlingService {
         List<Integer> scores = new ArrayList<>();
         scores.add(0);
         Integer score = 0, n = 0, sum = 0;
-        for (int i = 0; i < pinfalls.size()-1; i++) {
+        for (int i = 0; i < pinfalls.size() - 1; i++) {
+            
+            if (scores.get(scores.size() - 1) == 300) {
+                scores.remove(0);
+                return scores;
+            }
             
             sum += pinfalls.get(i);
             n++;
@@ -46,10 +51,9 @@ public class BowlingServiceImpl implements BowlingService {
             if (n == 2 || sum == 10) {
                 n = 0;
                 sum = 0;
-                scores.add(scores.get(scores.size()-1)+score);
+                scores.add(scores.get(scores.size() - 1) + score);
             }
 
-            
         }
         scores.remove(0);
         return scores;
