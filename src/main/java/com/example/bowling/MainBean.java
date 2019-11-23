@@ -40,7 +40,7 @@ public class MainBean {
             System.out.println(" -------------------------------------------");
 
             String homeDir = System.getProperty("user.home");
-            String filePath = homeDir + "/input2.txt";
+            String filePath = homeDir + "/input.txt";
 
             FileReader input = new FileReader(filePath);
             BufferedReader br = new BufferedReader(input);
