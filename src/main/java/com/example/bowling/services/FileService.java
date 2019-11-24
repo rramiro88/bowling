@@ -5,7 +5,6 @@
  */
 package com.example.bowling.services;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
 
@@ -14,5 +13,6 @@ import java.util.Map;
  * @author ramiro
  */
 public interface FileService {
-    Map<String, List<Integer>> parseFile(String path, String separator) throws FileNotFoundException;
+
+    Map<String, List<Integer>> parseFile(String path, String separator) throws Exception;
 }

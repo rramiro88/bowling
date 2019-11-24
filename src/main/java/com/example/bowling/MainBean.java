@@ -8,11 +8,6 @@ package com.example.bowling;
 import com.example.bowling.services.BowlingService;
 import com.example.bowling.services.FileService;
 import com.example.bowling.services.PrintScoresService;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -32,7 +27,7 @@ public class MainBean {
 
     @Autowired
     private PrintScoresService printScoresService;
-    
+
     @Autowired
     private FileService fileService;
 
@@ -42,8 +37,7 @@ public class MainBean {
             String homeDir = System.getProperty("user.home");
             String filePath = homeDir + "/input.txt";
 
-            Map<String, List<Integer>> lines = fileService.parseFile(filePath,"\t");
-            
+            Map<String, List<Integer>> lines = fileService.parseFile(filePath, "\t");
 
             System.out.print("Frame \t\t");
             for (int i = 0; i < 10; i++) {
@@ -56,7 +50,7 @@ public class MainBean {
 
             });
 
-        } catch (FileNotFoundException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(MainBean.class.getName()).log(Level.SEVERE, null, ex);
         }
 

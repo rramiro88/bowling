@@ -6,7 +6,6 @@
 package com.example.bowling.services;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,33 +21,54 @@ import org.springframework.stereotype.Service;
 public class FileServiceImpl implements FileService {
 
     @Override
-    public Map<String, List<Integer>> parseFile(String filePath, String separator) throws FileNotFoundException{
-        
+    public Map<String, List<Integer>> parseFile(String filePath, String separator) throws Exception {
 
         FileReader input = new FileReader(filePath);
         BufferedReader br = new BufferedReader(input);
         Map<String, List<Integer>> lines = new HashMap<>();
 
-        br.lines().forEach(l -> {
+        String l;
+        while ((l = br.readLine()) != null) {
             String[] line = l.split(separator);
 
             if (lines.get(line[0]) == null) {
                 lines.put(line[0], new ArrayList<>());
             }
 
+            validate(line[1]);
+
             List<Integer> shots = lines.get(line[0]);
             Integer value;
             try {
                 value = Integer.parseInt(line[1]);
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 value = 0;
             }
 
             shots.add(value);
             lines.put(line[0], shots);
-        });
+        }
 
         return lines;
+    }
+
+    private void validate(String value) throws Exception {
+
+        try {
+
+            Integer intValue = Integer.parseInt(value);
+            if (intValue < 0 || intValue > 10) {
+                throw new Exception("Pinfall value outside limits");
+            }
+
+        } catch (NumberFormatException e) {
+
+            if (!value.equals("F")) {
+                throw new Exception("Invalid input file. Please check");
+            }
+
+        }
+
     }
 
 }
