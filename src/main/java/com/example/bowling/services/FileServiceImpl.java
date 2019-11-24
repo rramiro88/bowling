@@ -35,7 +35,7 @@ public class FileServiceImpl implements FileService {
                 lines.put(line[0], new ArrayList<>());
             }
 
-            validate(line[1]);
+            validate(line);
 
             List<Integer> shots = lines.get(line[0]);
             Integer value;
@@ -52,10 +52,15 @@ public class FileServiceImpl implements FileService {
         return lines;
     }
 
-    private void validate(String value) throws Exception {
-
+    private void validate(String[] line) throws Exception {
+        String value = null;
         try {
 
+            if(line==null || line.length!=2){
+                throw new Exception("Invalid input file. Please check");
+            }
+            
+            value = line[1];
             Integer intValue = Integer.parseInt(value);
             if (intValue < 0 || intValue > 10) {
                 throw new Exception("Pinfall value outside limits");
