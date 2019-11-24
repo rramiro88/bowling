@@ -20,26 +20,30 @@ public class PrintScoresServiceImpl implements PrintScoresService {
 
         System.out.print("\n" + name + "\n");
         System.out.print("Pinfalls \t");
-        
+
         Integer n = 0, sum = 0;
         for (int i = 0; i < pinfalls.size(); i++) {
-            
+
             n++;
             sum += pinfalls.get(i);
 
             if (sum == 10 && n < 2) { //was a strike
                 System.out.printf("%10s","X");
+//                System.out.print("\tX\t");
             } else {
 
                 if (n == 2) {
 
                     if (pinfalls.get(i) + pinfalls.get(i - 1) == 10) { //was a spare
                         System.out.printf("%5s","/ ");
+//                        System.out.print("/\t");
                     } else {
                         System.out.printf("%5d",pinfalls.get(i));
+//                        System.out.print(pinfalls.get(i)+"\t");
                     }
-                }else{
-                    System.out.printf("%5d",pinfalls.get(i));
+                } else {
+                    System.out.printf("%5d", pinfalls.get(i));
+//                    System.out.print(pinfalls.get(i)+"\t");
                 }
 
             }
@@ -49,11 +53,11 @@ public class PrintScoresServiceImpl implements PrintScoresService {
                 sum = 0;
             }
 
-            
         }
         System.out.print("\nScores \t\t");
         for (Integer s : scores) {
-            System.out.printf("%10s",s);
+            System.out.printf("%10s", s);
+//            System.out.print(s+"\t\t");
         }
 
     }

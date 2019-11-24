@@ -42,6 +42,7 @@ public class MainBean {
             System.out.print("Frame \t\t");
             for (int i = 0; i < 10; i++) {
                 System.out.printf("%10s", i + 1);
+//                System.out.print((i+1)+"\t\t");
             }
 
             lines.forEach((k, v) -> {
@@ -49,7 +50,9 @@ public class MainBean {
                 printScoresService.printScores(k, v, bowlingService.calculateScore(v));
 
             });
-
+            
+            System.out.print("\n");
+            
         } catch (Exception ex) {
             Logger.getLogger(MainBean.class.getName()).log(Level.SEVERE, null, ex);
         }
