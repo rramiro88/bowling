@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 /**
@@ -20,16 +20,12 @@ import org.springframework.stereotype.Component;
  * @author ramiro
  */
 @Component
+@RequiredArgsConstructor
 public class MainBean {
 
-    @Autowired
-    private BowlingService bowlingService;
-
-    @Autowired
-    private PrintScoresService printScoresService;
-
-    @Autowired
-    private FileService fileService;
+    private final BowlingService bowlingService;
+    private final PrintScoresService printScoresService;
+    private final FileService fileService;
 
     public void execute() {
         try {
